@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { obtenerJSON } from "../src/js/api/http.js";
+import { solicitarJSON } from "../src/js/api/http.js";
 import {
   consultarSalud,
   listarAlojamientos,
@@ -41,7 +41,7 @@ test("preserva status y mensaje de error HTTP del backend", async () => {
     json: async () => ({ error: { message: "Alojamiento no encontrado." } }),
   });
   await assert.rejects(
-    obtenerJSON("/api/v1/alojamientos/999"),
+    solicitarJSON("/api/v1/alojamientos/999"),
     (error) =>
       error.status === 404 && error.message === "Alojamiento no encontrado.",
   );
